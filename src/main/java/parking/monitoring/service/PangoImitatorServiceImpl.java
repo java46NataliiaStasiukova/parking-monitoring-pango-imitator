@@ -16,10 +16,9 @@ public class PangoImitatorServiceImpl implements PangoImitatorService {
 	int paymentProb;
 	
 	@Override
-	public CarPaymentData getData(long carNumber) {	
-		
-		return isPaid(paymentProb) ? new CarPaymentData(carNumber, "paid", LocalDateTime.now(), LocalDateTime.now().plusHours(1)) : 
-			new CarPaymentData(carNumber, "not-paid", LocalDateTime.now(), LocalDateTime.now().minusHours(1));
+	public CarPaymentData getData(long carNumber, String parkingZone) {	
+		return isPaid(paymentProb) ? new CarPaymentData(carNumber, parkingZone, "paid", LocalDateTime.now(), LocalDateTime.now().plusHours(1)) : 
+			new CarPaymentData(carNumber, parkingZone, "not-paid", LocalDateTime.now(), LocalDateTime.now().minusHours(1));
 	}
 
 	private boolean isPaid(int prob) {
