@@ -17,12 +17,13 @@ public class PangoImitatorServiceImpl implements PangoImitatorService {
 	
 	@Override
 	public CarPaymentData getData(long carNumber, String parkingZone) {	
+		
 		return isPaid(paymentProb) ? new CarPaymentData(carNumber, parkingZone, "paid", LocalDateTime.now(), LocalDateTime.now().plusHours(1)) : 
 			new CarPaymentData(carNumber, parkingZone, "not-paid", LocalDateTime.now(), LocalDateTime.now().minusHours(1));
 	}
 
 	private boolean isPaid(int prob) {
-		LOG.debug("*pango-imitator* checking is parking paid");
+		LOG.debug("*pango-imitator* checking if parking is paid");
 		return ThreadLocalRandom.current().nextInt(0, 100) < prob;
 	}
 
